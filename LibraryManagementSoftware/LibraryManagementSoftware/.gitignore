@@ -1,4 +1,4 @@
-LibraryManagementSoftware/src/main/resources/application.properties
+LibraryManagementSoftware/LibraryManagementSoftware/src/main/resources/application.properties
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -33,3 +33,4 @@ build/
 ### VS Code ###
 .vscode/
 
+Library-Management-System-with-Real-Time-Inventory-and-Lending_October_Batch-4_2025/
