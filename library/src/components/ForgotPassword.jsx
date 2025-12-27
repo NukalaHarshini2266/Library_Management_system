@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaArrowLeft } from "react-icons/fa";
 
@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/users/forgot-password", { email });
+      const res = await api.post("/api/users/forgot-password", { email });
       alert(res.data.message);
       navigate("/verify-otp", { state: { email } });
     } catch (err) {

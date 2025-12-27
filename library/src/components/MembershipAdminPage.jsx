@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const MembershipAdminPage = () => {
   const [memberships, setMemberships] = useState([]);
@@ -11,7 +11,7 @@ const MembershipAdminPage = () => {
 
   const fetchMemberships = async () => {
     try {
-      const res = await axios.get("/api/members/all");
+      const res = await api.get("/api/members/all");
       setMemberships(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("fetchMemberships error:", err);
@@ -24,7 +24,7 @@ const MembershipAdminPage = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this member?")) return;
     try {
-      await axios.delete(`/api/members/delete/${id}`);
+      await api.delete(`/api/members/delete/${id}`);
       alert("Member deleted successfully!");
       fetchMemberships();
     } catch (err) {
@@ -39,7 +39,7 @@ const MembershipAdminPage = () => {
     if (!newPlan || !duration) return;
 
     try {
-      await axios.put(`/api/members/update/${id}`, {
+      await api.put(`/api/members/update/${id}`, {
         planType: newPlan,
         durationMonths: parseInt(duration),
       });

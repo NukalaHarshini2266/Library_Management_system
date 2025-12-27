@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const BorrowRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -11,7 +11,7 @@ const BorrowRequests = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get("/api/borrow/requests");
+      const res = await api.get("/api/borrow/requests");
       setRequests(res.data || []);
     } catch (err) {
       console.error("Error fetching borrow requests:", err);
@@ -22,7 +22,7 @@ const BorrowRequests = () => {
   const handleAccept = async (borrowId) => {
     setLoadingStates(prev => ({ ...prev, [borrowId]: 'accepting' }));
     try {
-      await axios.post("/api/borrow/approve", null, { params: { borrowId } });
+      await api.post("/api/borrow/approve", null, { params: { borrowId } });
       alert("✅ Request accepted!");
       fetchRequests();
     } catch (err) {
@@ -36,7 +36,7 @@ const BorrowRequests = () => {
   const handleReject = async (borrowId) => {
     setLoadingStates(prev => ({ ...prev, [borrowId]: 'rejecting' }));
     try {
-      await axios.post("/api/borrow/reject", null, { params: { borrowId } });
+      await api.post("/api/borrow/reject", null, { params: { borrowId } });
       alert("🚫 Request rejected!");
       fetchRequests();
     } catch (err) {

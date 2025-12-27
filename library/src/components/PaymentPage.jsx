@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 import { FaCreditCard, FaCheckCircle, FaMobileAlt, FaUniversity } from "react-icons/fa";
 
@@ -53,10 +53,10 @@ const PaymentPage = () => {
         durationMonths: membership.duration,
       };
 
-      const res = await axios.post("/api/members/add", payload);
+      const res = await api.post("/api/members/add", payload);
 
       if (res.status === 200 || res.status === 201) {
-          await axios.post("/api/transactions/add", {
+          await api.post("/api/transactions/add", {
           transactionType: "MEMBERSHIP",
           name: user.name,
           email: user.email,

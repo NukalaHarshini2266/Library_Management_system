@@ -31,10 +31,10 @@ const MemberNotifications = () => {
           overdueRes,
           reservationRes
         ] = await Promise.all([
-          axios.get(`http://localhost:8081/api/borrow/notifications/paid?email=${email}`),
-          axios.get(`http://localhost:8081/api/borrow/notifications/due-soon?email=${email}`),
-          axios.get(`http://localhost:8081/api/borrow/notifications/overdue?email=${email}`),
-          axios.get(`http://localhost:8081/api/reservation/updates?email=${email}`)
+          api.get(`http://localhost:8081/api/borrow/notifications/paid?email=${email}`),
+          api.get(`http://localhost:8081/api/borrow/notifications/due-soon?email=${email}`),
+          api.get(`http://localhost:8081/api/borrow/notifications/overdue?email=${email}`),
+          api.get(`http://localhost:8081/api/reservation/updates?email=${email}`)
         ]);
 
         // Map each type to a unified notification format with proper categorization

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
 const BorrowedTable = () => {
@@ -28,9 +28,9 @@ const BorrowedTable = () => {
       setIsLoading(true);
       let res;
       if (role === "ADMIN" || role === "LIBRARIAN") {
-        res = await axios.get("/api/borrow/all");
+        res = await api.get("/api/borrow/all");
       } else {
-        res = await axios.get(`/api/borrow/user/${user.id}`);
+        res = await api.get(`/api/borrow/user/${user.id}`);
       }
       setRecords(res.data);
       
@@ -101,7 +101,7 @@ const BorrowedTable = () => {
   const handleSendReturnRequest = async (record) => {
     try {
       setLoadingId(record.borrowId);
-      const res = await axios.post(
+      const res = await api.post(
         `/api/borrow/return/request?borrowId=${record.borrowId}`
       );
 
@@ -128,7 +128,7 @@ const BorrowedTable = () => {
   const handleRenewRequest = async (record) => {
     try {
       setRenewLoadingId(record.borrowId);
-      const res = await axios.put(`/api/borrow/renew/request/${record.borrowId}`);
+      const res = await api.put(`/api/borrow/renew/request/${record.borrowId}`);
 
       const updated = res.data;
       setRecords((prev) =>
@@ -167,7 +167,7 @@ const BorrowedTable = () => {
     try {
       setLoadingId(record.borrowId);
 
-      const res = await axios.post(
+      const res = await api.post(
         `/api/borrow/return/inspect?borrowId=${record.borrowId}`,
         {
           damaged: isDamaged,
@@ -193,7 +193,7 @@ const BorrowedTable = () => {
   // -------------------- ADMIN APPROVE/REJECT RENEW --------------------
   const handleApproveRenew = async (record) => {
     try {
-      const res = await axios.put(`/api/borrow/renew/approve/${record.borrowId}`);
+      const res = await api.put(`/api/borrow/renew/approve/${record.borrowId}`);
       const updated = res.data;
 
       setRecords((prev) =>
@@ -209,7 +209,7 @@ const BorrowedTable = () => {
 
   const handleRejectRenew = async (record) => {
     try {
-      const res = await axios.put(`/api/borrow/renew/reject/${record.borrowId}`);
+      const res = await api.put(`/api/borrow/renew/reject/${record.borrowId}`);
       const updated = res.data;
 
       setRecords((prev) =>

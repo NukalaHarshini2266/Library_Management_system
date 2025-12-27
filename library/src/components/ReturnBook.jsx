@@ -28,7 +28,7 @@ export default function ReturnBook() {
     try {
       const user = record.user;
 
-      await axios.post("http://localhost:8081/api/transactions/add", {
+      await api.post("http://localhost:8081/api/transactions/add", {
         transactionType: "PENALTY",
         borrowId: record.borrowId,
         userId: user.id,
@@ -41,7 +41,7 @@ export default function ReturnBook() {
         penaltyAmount: record.penalty
       });
 
-      await axios.post(
+      await api.post(
         `http://localhost:8081/api/borrow/return/complete?borrowId=${record.borrowId}`
       );
 

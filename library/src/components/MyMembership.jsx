@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const MyMembershipPage = () => {
   const [memberships, setMemberships] = useState([]);
@@ -18,7 +18,7 @@ const MyMembershipPage = () => {
 
   const fetchMemberships = async (email) => {
     try {
-      const res = await axios.get(`/api/members/user/${email}`);
+      const res = await api.get(`/api/members/user/${email}`);
       setMemberships(Array.isArray(res.data) ? res.data : [res.data]);
     } catch (err) {
       console.error(err);

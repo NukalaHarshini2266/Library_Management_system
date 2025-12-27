@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
 const MembershipPage = () => {

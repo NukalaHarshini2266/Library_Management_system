@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -21,7 +21,7 @@ const BookDetail = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const res = await axios.get(`/api/books/${id}`);
+        const res = await api.get(`/api/books/${id}`);
         setBook(res.data);
       } catch (err) {
         console.error("Failed to fetch book:", err);
@@ -35,7 +35,7 @@ const BookDetail = () => {
       if (!userId || !id) return;
 
       try {
-        const res = await axios.get(`/api/reservation/active/${userId}/${id}`);
+        const res = await api.get(`/api/reservation/active/${userId}/${id}`);
 
         if (res.data) {
           setReservedBookIds([id]);
@@ -72,7 +72,7 @@ const BookDetail = () => {
     
     setLoading(prev => ({ ...prev, borrow: true }));
     try {
-      await axios.post(`/api/borrow/request?userId=${userId}&bookId=${book.id}`);
+      await api.post(`/api/borrow/request?userId=${userId}&bookId=${book.id}`);
       alert("Book request sent successfully!");
       navigate("/borrowed-books");
     } catch (err) {
@@ -89,7 +89,7 @@ const BookDetail = () => {
 
     setLoading(prev => ({ ...prev, reserve: true }));
     try {
-      const res = await axios.post("/api/reservation/add", null, {
+      const res = await api.post("/api/reservation/add", null, {
         params: { userId, bookId },
       });
 
@@ -116,7 +116,7 @@ const BookDetail = () => {
 
     setLoading(prev => ({ ...prev, cancel: true }));
     try {
-      await axios.post(
+      await api.post(
         `/api/reservation/cancel?reservationId=${book.reservationId}`
       );
 
@@ -142,7 +142,7 @@ const BookDetail = () => {
       if (!book.reservationId) return alert("No reservation found!");
 
       setLoading(prev => ({ ...prev, complete: true }));
-      const res = await axios.post(
+      const res = await api.post(
         `/api/reservation/complete?reservationId=${book.reservationId}`
       );
 
@@ -163,7 +163,7 @@ const BookDetail = () => {
     if (!window.confirm("Are you sure you want to delete this book?")) return;
 
     try {
-      await axios.delete(`/api/books/delete/${book.id}`);
+      await api.delete(`/api/books/delete/${book.id}`);
       alert("Book deleted");
       navigate("/dashboard");
     } catch (err) {

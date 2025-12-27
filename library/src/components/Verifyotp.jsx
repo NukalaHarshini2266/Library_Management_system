@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const VerifyOtp = () => {
@@ -11,7 +11,7 @@ const VerifyOtp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/users/verify-otp", { email, otp });
+      const res = await api.post("/api/users/verify-otp", { email, otp });
       alert(res.data.message);
       navigate("/reset-password", { state: { email } });
     } catch (err) {

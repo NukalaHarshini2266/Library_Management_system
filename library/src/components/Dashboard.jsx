@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { FaBars, FaSearch } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ const Dashboard = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get("/api/books");
+      const res = await api.get("/api/books");
       if (!mountedRef.current) return;
       setBooks(Array.isArray(res.data) ? res.data : []);
       setAllBooks(Array.isArray(res.data) ? res.data : []);
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("/api/categories/all");
+      const res = await api.get("/api/categories/all");
       setCategories(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("fetchCategories:", err);
@@ -64,7 +64,7 @@ const Dashboard = () => {
       return;
     }
     try {
-      const res = await axios.get(`/api/books/search/category?category=${encodeURIComponent(cat)}`);
+      const res = await api.get(`/api/books/search/category?category=${encodeURIComponent(cat)}`);
       setBooks(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("category search:", err);
@@ -83,7 +83,7 @@ const Dashboard = () => {
     }
 
     try {
-      const res = await axios.get(`/api/books/availability?available=${status === "available"}`);
+      const res = await api.get(`/api/books/availability?available=${status === "available"}`);
       setBooks(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("availability filter:", err);
@@ -99,7 +99,7 @@ const Dashboard = () => {
 
   const fetchSearchResults = async () => {
     try {
-      const res = await axios.get(`/api/books/search?keyword=${query}`);
+      const res = await api.get(`/api/books/search?keyword=${query}`);
       setBooks(res.data);
     } catch (err) {
       console.error("Search failed:", err);
@@ -116,7 +116,7 @@ const Dashboard = () => {
     setLoadingBorrowId(book.id); // set loading state for this book
 
     try {
-      await axios.post(`/api/borrow/request?userId=${user.id}&bookId=${book.id}`);
+      await api.post(`/api/borrow/request?userId=${user.id}&bookId=${book.id}`);
       alert("Book request sent successfully!");
       navigate("/borrowed-books");
     } catch (err) {
@@ -133,7 +133,7 @@ const Dashboard = () => {
     if (!window.confirm("Delete this book?")) return;
 
     try {
-      await axios.delete(`/api/books/delete/${bookId}`);
+      await api.delete(`/api/books/delete/${bookId}`);
       alert("Deleted");
       fetchBooks();
     } catch (err) {

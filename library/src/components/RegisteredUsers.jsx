@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const RegisteredUsers = () => {
   const [users, setUsers] = useState([]);
@@ -33,7 +33,7 @@ const RegisteredUsers = () => {
     setLoading(true);
     const token = localStorage.getItem("token");
     
-    axios.get("/api/users", {
+    api.get("/api/users", {
       headers: { 'Authorization': token }
     })
     .then((res) => {
@@ -70,7 +70,7 @@ const RegisteredUsers = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     
-    axios.post("/api/users/register", newUser, {
+    api.post("/api/users/register", newUser, {
       headers: { 'Authorization': token, 'role': currentRole }
     })
     .then(() => {
@@ -84,7 +84,7 @@ const RegisteredUsers = () => {
   const handleDeleteUser = (user) => {
     if (window.confirm(`Delete user ${user.name}?`)) {
       const token = localStorage.getItem("token");
-      axios.delete(`/api/users/${user.id}`, {
+      api.delete(`/api/users/${user.id}`, {
         headers: { 'Authorization': token, 'role': currentRole }
       })
       .then(() => {

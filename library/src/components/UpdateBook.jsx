@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { FaArrowLeft } from "react-icons/fa";
 
 const UpdateBook = () => {

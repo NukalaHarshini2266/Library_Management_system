@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useNavigate } from "react-router-dom";
 
 // 👁️ Eye icon component
@@ -31,7 +31,7 @@ const Login = () => {
     try {
       const payload = { email, password };
 
-      const res = await axios.post("/api/users/login", payload);
+      const res = await api.post("/api/users/login", payload);
       const data = res.data;
 
       // ✅ Store full login data safely

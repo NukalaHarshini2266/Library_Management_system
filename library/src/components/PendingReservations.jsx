@@ -10,8 +10,8 @@ const PendingReservations = () => {
   const loadAll = async () => {
     try {
       setLoading(true);
-      const pending = await axios.get("http://localhost:8081/api/reservation/admin/pending");
-      const notified = await axios.get("http://localhost:8081/api/reservation/admin/notified");
+      const pending = await api.get("http://localhost:8081/api/reservation/admin/pending");
+      const notified = await api.get("http://localhost:8081/api/reservation/admin/notified");
 
       // Combine both
       setReservations([...pending.data, ...notified.data]);

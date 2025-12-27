@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const TransactionsPage = ({ transactionType }) => {
   const [transactions, setTransactions] = useState([]);
@@ -19,9 +19,9 @@ const TransactionsPage = ({ transactionType }) => {
     try {
       let res;
       if (role === "ADMIN" || role === "LIBRARIAN") {
-        res = await axios.get("/api/transactions/all");
+        res = await api.get("/api/transactions/all");
       } else {
-        res = await axios.get(`/api/transactions/user/${user.email}`);
+        res = await api.get(`/api/transactions/user/${user.email}`);
       }
 
       const all = res.data || [];

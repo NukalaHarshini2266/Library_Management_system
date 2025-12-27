@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/users/reset-password", { email, newPassword });
+      const res = await api.post("/api/users/reset-password", { email, newPassword });
       alert(res.data.message);
       navigate("/login");
     } catch (err) {

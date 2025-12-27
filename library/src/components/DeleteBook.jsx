@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../api/axiosConfig";
+import api from "../api/axiosConfig";
 
 const DeleteBook = () => {
   const [books, setBooks] = useState([]);
@@ -7,7 +7,7 @@ const DeleteBook = () => {
   // Fetch all books
   const fetchBooks = async () => {
     try {
-      const res = await axios.get("/api/books");
+      const res = await api.get("/api/books");
       setBooks(res.data);
     } catch (err) {
       console.error("Failed to fetch books:", err);
@@ -23,7 +23,7 @@ const DeleteBook = () => {
     if (!window.confirm("Are you sure you want to delete this book?")) return;
 
     try {
-      await axios.delete(`/api/books/delete/${encodeURIComponent(id)}`);
+      await api.delete(`/api/books/delete/${encodeURIComponent(id)}`);
       alert("Book deleted successfully!");
       // Remove the deleted book from state so UI updates
       setBooks((prev) => prev.filter((book) => book.id !== id));
