@@ -19,7 +19,7 @@ const AddBook = () => {
   }, []);
 
   const fetchCategories = () => {
-    axios
+    api
       .get("/api/categories/all")
       .then((res) => setCategories(res.data))
       .catch((err) => console.error(err));
@@ -27,7 +27,7 @@ const AddBook = () => {
 
   const handleAddCategory = () => {
     if (!newCategoryName.trim()) return;
-    axios
+    api
       .post("/api/categories/add", { name: newCategoryName.trim().toUpperCase() })
       .then((res) => {
         setCategories([...categories, res.data]);
@@ -66,7 +66,7 @@ const AddBook = () => {
       categoryIds: selectedCategories,
     };
 
-    axios
+    api
       .post("/api/books/add", payload)
       .then((res) => {
         alert("Book added successfully!");

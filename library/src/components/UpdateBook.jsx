@@ -44,14 +44,14 @@ const UpdateBook = () => {
   };
 
   const fetchBook = () => {
-    axios
+    api
       .get(`/api/books/${id}`)
       .then((res) => populateBook(res.data))
       .catch((err) => console.error("Error fetching book:", err));
   };
 
   const fetchCategories = () => {
-    axios
+    api
       .get("/api/categories/all")
       .then((res) => setCategories(Array.isArray(res.data) ? res.data : []))
       .catch((err) => console.error("Error fetching categories:", err));
@@ -97,7 +97,7 @@ const UpdateBook = () => {
       categoryIds: selectedCategories,
     };
 
-    axios
+    api
       .put(`/api/books/update/${id}`, payload)
       .then(() => {
         alert("Book updated successfully!");

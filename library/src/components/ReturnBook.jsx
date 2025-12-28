@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axiosConfig";
 
 export default function ReturnBook() {
   const { borrowId } = useParams();
@@ -12,7 +12,7 @@ export default function ReturnBook() {
 
   // Fetch borrow record
   useEffect(() => {
-    axios
+    api
       .get(`http://localhost:8081/api/borrow/${borrowId}`)
       .then((res) => {
         setRecord(res.data);
