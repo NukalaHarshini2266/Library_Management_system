@@ -321,7 +321,7 @@ const Home = () => {
           
           <div className="row g-4">
             {[
-              { icon: "🔍", title: "Smart Cataloging", desc: "Create, tag and search titles instantly with author, genre and shelf mapping." },
+              { icon: "🔍", title: "Smart Cataloging", desc: "Create, tag and search titles instantly with author, category,publisher mapping." },
               { icon: "⚡", title: "Automated Circulation", desc: "Issue / return books in one click with auto due dates and fine calculation." },
               { icon: "🔔", title: "Alerts & Reminders", desc: "Notify students on due dates, reservations and premium membership renewals." },
               { icon: "👥", title: "Role-based Dashboards", desc: "Separate panels for Admin, Librarian and User with secure JWT authentication." }
@@ -381,7 +381,7 @@ const Home = () => {
           <div className="row g-4 justify-content-center">
             {[
               { icon: "📖", title: "Borrow Management", desc: "One-click issuing & returns, due-date reminders and fine calculation without spreadsheets." },
-              { icon: "📊", title: "Live Inventory", desc: "Real-time stock levels, low-stock alerts and shelf-wise tracking for every title in your library." },
+              { icon: "📊", title: "Live Inventory", desc: "Real-time stock levels, low-stock alerts ,due date alerts for every title in your library." },
               { icon: "📈", title: "Member Insights", desc: "Track reading trends, popular genres and member activity to make better purchase decisions." }
             ].map((module, index) => (
               <div className="col-md-4" key={index}>
