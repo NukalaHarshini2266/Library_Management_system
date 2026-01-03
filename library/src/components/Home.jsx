@@ -174,12 +174,11 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section - Updated for better mobile responsiveness */}
+      {/* Hero Section with consistent spacing */}
       <div
         className="d-flex flex-column justify-content-center align-items-center text-center"
         style={{
-          minHeight: "calc(100vh - 76px)", // Account for navbar height
-          padding: "10px 5px",
+          padding: "110px 15px", // Consistent spacing on all devices
           position: "relative",
           zIndex: 2,
         }}
@@ -188,7 +187,7 @@ const Home = () => {
           style={{
             backgroundColor: "rgba(255, 255, 255, 0.95)",
             backdropFilter: "blur(10px)",
-            padding: "40px 30px",
+            padding: "80px 30px",
             borderRadius: "25px",
             boxShadow: `
               0 20px 40px rgba(0,0,0,0.25),
@@ -201,7 +200,6 @@ const Home = () => {
             transition: "all 0.4s ease",
             position: "relative",
             overflow: "hidden",
-            margin: "20px 0"
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-8px) scale(1.01)";
@@ -242,14 +240,14 @@ const Home = () => {
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             lineHeight: "1.3",
-            fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
+            fontSize: "clamp(2.5rem, 6vw, 3.8rem)",
             fontWeight: "800",
             letterSpacing: "-0.5px"
           }}>
             Library Management<br />Software
           </h1>
           <p className="lead text-secondary mb-4" style={{
-            fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
+            fontSize: "clamp(1.2rem, 3.2vw, 1.4rem)",
             textShadow: "1px 1px 2px rgba(0,0,0,0.05)",
             maxWidth: "800px",
             margin: "0 auto",
