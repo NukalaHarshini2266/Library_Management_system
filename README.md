@@ -1,6 +1,8 @@
 # 📚Library_Management_system
 A web-based Library Management System designed to manage books, users, memberships, reservations, borrowing, and returns with clear role-based access for Admin, Librarian, and Users.
 
+In the above repository library folder contains frontend code and librarymanagementsystem folder contains backend code
+
 # 🌐 Live Application
   Link:
 🔗 https://mylibraryportal.netlify.app
