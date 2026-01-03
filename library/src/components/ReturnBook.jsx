@@ -324,7 +324,7 @@ export default function ReturnBook() {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .glass-effect {
           background: rgba(255, 255, 255, 0.25);
           backdrop-filter: blur(15px);
