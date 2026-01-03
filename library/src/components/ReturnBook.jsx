@@ -6,6 +6,7 @@ export default function ReturnBook() {
   const { borrowId } = useParams();
   const [record, setRecord] = useState(null);
   const [paymentDone, setPaymentDone] = useState(false);
+  const [paying, setPaying] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("CARD");
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ export default function ReturnBook() {
   // Fetch borrow record
   useEffect(() => {
     api
-      .get(`http://localhost:8081/api/borrow/${borrowId}`)
+      .get(`/api/borrow/${borrowId}`)
       .then((res) => {
         setRecord(res.data);
         setLoading(false);
@@ -25,10 +26,12 @@ export default function ReturnBook() {
   }, [borrowId]);
 
   const handlePenaltyPayment = async () => {
+    if (paymentDone || paying) return; // prevent double clicks
+    setPaying(true); // start "Paying..." state
     try {
       const user = record.user;
 
-      await api.post("http://localhost:8081/api/transactions/add", {
+      await api.post("/api/transactions/add", {
         transactionType: "PENALTY",
         borrowId: record.borrowId,
         userId: user.id,
@@ -41,17 +44,18 @@ export default function ReturnBook() {
         penaltyAmount: record.penalty
       });
 
-      await api.post(
-        `http://localhost:8081/api/borrow/return/complete?borrowId=${record.borrowId}`
-      );
+      await api.post(`/api/borrow/return/complete?borrowId=${record.borrowId}`);
 
       setPaymentDone(true);
       setShowPopup(true);
     } catch (err) {
       console.error(err);
       alert("Payment or return failed!");
+    } finally {
+      setPaying(false); // stop "Paying..." state
     }
   };
+
 
   if (loading) return (
     <div 
@@ -234,7 +238,7 @@ export default function ReturnBook() {
                           <button
                             className="btn w-100 py-2 fw-semibold"
                             onClick={handlePenaltyPayment}
-                            disabled={paymentDone}
+                            disabled={paymentDone|| paying}
                             style={{
                               background: paymentDone 
                                 ? "#28a745"
@@ -257,7 +261,7 @@ export default function ReturnBook() {
                               }
                             }}
                           >
-                            {paymentDone ? "✅ Payment Completed" : "Pay & Return Book"}
+                            {paying ? "💳 Paying..." : paymentDone ? "✅ Payment Completed" : "Pay & Return Book"}
                           </button>
                         </div>
                       </div>

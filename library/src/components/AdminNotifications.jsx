@@ -20,8 +20,8 @@ const AdminNotifications = () => {
   const fetchNotifications = async () => {
     try {
       const [damagedRes, lowStockRes] = await Promise.all([
-        api.get("http://localhost:8081/api/books/damaged"),
-        api.get("http://localhost:8081/api/books/low-stock")
+        api.get("/api/books/damaged"),
+        api.get("/api/books/low-stock")
       ]);
 
       const damaged = damagedRes.data.map(book => ({
@@ -80,7 +80,7 @@ const AdminNotifications = () => {
     if (!confirm(`Repair ${count} copy/copies of "${bookName}"?`)) return;
 
     try {
-      await api.post("http://localhost:8081/api/books/repair", null, {
+      await api.post("/api/books/repair", null, {
         params: { bookId, repairedCount: count }
       });
       alert(`✅ ${count} copies repaired!`);
