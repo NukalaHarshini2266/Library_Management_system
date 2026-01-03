@@ -437,10 +437,10 @@ const Home = () => {
           
           <div className="row g-4 justify-content-center">
             {[
-              { name: "Normal", books: "1 book/month", price: "Free", popular: false },
-              { name: "Standard", books: "3 books/month", price: "₹100/month", popular: true },
-              { name: "Premium", books: "5 books/month", price: "₹200/month", popular: false },
-              { name: "Gold", books: "10 books/month", price: "₹300/month", popular: false }
+              { name: "Normal", books: "Normal users can borrow 1 book/month", price: "Free", popular: false },
+              { name: "Standard", books: "Standard users can borrow3 books/month", price: "₹100/month", popular: true },
+              { name: "Premium", books: "Premium users can borrow 5 books/month", price: "₹200/month", popular: false },
+              { name: "Gold", books: "Gold users can borrow 10 books/month", price: "₹300/month", popular: false }
             ].map((plan, index) => (
               <div className="col-lg-3 col-md-6" key={index}>
                 <div className="card h-100" style={{
