@@ -174,38 +174,39 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Updated for better mobile responsiveness */}
       <div
         className="d-flex flex-column justify-content-center align-items-center text-center"
         style={{
-          minHeight: "100vh",
-          padding: "80px 20px 20px",
+          minHeight: "calc(100vh - 76px)", // Account for navbar height
+          padding: "10px 5px",
           position: "relative",
           zIndex: 2,
         }}
       >
         <div
           style={{
-            backgroundColor: "rgba(255, 255, 255, 0.92)",
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
             backdropFilter: "blur(10px)",
-            padding: "70px 60px", // Increased padding for larger card
-            borderRadius: "30px", // Slightly larger radius
+            padding: "40px 30px",
+            borderRadius: "25px",
             boxShadow: `
-              0 30px 60px rgba(0,0,0,0.3),
+              0 20px 40px rgba(0,0,0,0.25),
               0 0 0 1px rgba(139, 69, 19, 0.15),
               inset 0 1px 0 rgba(255,255,255,0.8)
             `,
-            maxWidth: "950px", // Increased max width
-            width: "90%", // Added width for better control
-            border: "1px solid rgba(203, 178, 121, 0.4)", // Slightly darker border
+            maxWidth: "1000px",
+            width: "100%",
+            border: "1px solid rgba(203, 178, 121, 0.3)",
             transition: "all 0.4s ease",
             position: "relative",
-            overflow: "hidden"
+            overflow: "hidden",
+            margin: "20px 0"
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateY(-10px) scale(1.02)";
+            e.currentTarget.style.transform = "translateY(-8px) scale(1.01)";
             e.currentTarget.style.boxShadow = `
-              0 40px 70px rgba(0,0,0,0.35),
+              0 25px 50px rgba(0,0,0,0.3),
               0 0 0 1px rgba(139, 69, 19, 0.2),
               inset 0 1px 0 rgba(255,255,255,0.8)
             `;
@@ -213,7 +214,7 @@ const Home = () => {
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = "translateY(0) scale(1)";
             e.currentTarget.style.boxShadow = `
-              0 30px 60px rgba(0,0,0,0.3),
+              0 20px 40px rgba(0,0,0,0.25),
               0 0 0 1px rgba(139, 69, 19, 0.15),
               inset 0 1px 0 rgba(255,255,255,0.8)
             `;
@@ -234,46 +235,49 @@ const Home = () => {
             zIndex: -1
           }}></div>
 
-          <h1 className="display-3 fw-bold text-dark mb-4" style={{ // Changed to display-3
+          <h1 className="display-4 fw-bold text-dark mb-4" style={{
             textShadow: "3px 3px 6px rgba(0,0,0,0.15)",
             background: "linear-gradient(45deg, #3b2f2f, #8c6239, #cbb279)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
             lineHeight: "1.3",
-            fontSize: "clamp(2.5rem, 5vw, 3.5rem)" // Responsive font size
+            fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
+            fontWeight: "800",
+            letterSpacing: "-0.5px"
           }}>
             Library Management<br />Software
           </h1>
-          <p className="lead text-secondary mb-5" style={{ // Increased margin-bottom
-            fontSize: "1.4rem", // Increased font size
+          <p className="lead text-secondary mb-4" style={{
+            fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
             textShadow: "1px 1px 2px rgba(0,0,0,0.05)",
-            maxWidth: "800px", // Added max width for better text flow
-            margin: "0 auto", // Center the text block
-            lineHeight: "1.6" // Better line height for readability
+            maxWidth: "800px",
+            margin: "0 auto",
+            lineHeight: "1.6"
           }}>
             Everything your library needs, in one place.<br/>
             Manage your books, users, and library efficiently with a modern, intuitive interface.
           </p>
-          <div className="mt-4 d-flex flex-wrap justify-content-center gap-4"> {/* Added flex-wrap and gap */}
+          <div className="mt-4 d-flex flex-wrap justify-content-center gap-3">
             <Link 
               to="/register" 
               className="btn btn-lg btn-warning text-dark fw-semibold shadow-sm"
               style={{
                 transition: "all 0.3s ease",
-                padding: "18px 45px", // Increased padding
+                padding: "clamp(14px, 3vw, 18px) clamp(30px, 5vw, 45px)",
                 borderRadius: "12px",
                 border: "none",
                 background: "linear-gradient(45deg, #ffc107, #ffb300)",
-                fontSize: "1.2rem", // Slightly larger font
-                minWidth: "220px" // Minimum width for consistent sizing
+                fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+                minWidth: "clamp(180px, 40vw, 220px)"
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-5px) scale(1.05)"; // Stronger hover effect
-                e.target.style.boxShadow = "0 15px 30px rgba(255, 193, 7, 0.5)"; // Stronger shadow
+                e.target.style.transform = "translateY(-4px) scale(1.05)";
+                e.target.style.boxShadow = "0 12px 25px rgba(255, 193, 7, 0.4)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = "translateY(0) scale(1)";
-                e.target.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)"; // Adjusted base shadow
+                e.target.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)";
               }}
             >
               Get Started Free
@@ -283,23 +287,23 @@ const Home = () => {
               className="btn btn-lg btn-outline-dark fw-semibold shadow-sm"
               style={{
                 transition: "all 0.3s ease",
-                padding: "18px 45px", // Increased padding
+                padding: "clamp(14px, 3vw, 18px) clamp(30px, 5vw, 45px)",
                 borderRadius: "12px",
                 border: "2px solid #3b2f2f",
-                fontSize: "1.2rem", // Slightly larger font
-                minWidth: "220px" // Minimum width for consistent sizing
+                fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+                minWidth: "clamp(180px, 40vw, 220px)"
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-5px)"; // Stronger hover effect
+                e.target.style.transform = "translateY(-4px)";
                 e.target.style.background = "#3b2f2f";
                 e.target.style.color = "white";
-                e.target.style.boxShadow = "0 10px 25px rgba(59, 47, 47, 0.4)"; // Stronger shadow
+                e.target.style.boxShadow = "0 8px 20px rgba(59, 47, 47, 0.3)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = "translateY(0)";
                 e.target.style.background = "transparent";
                 e.target.style.color = "#3b2f2f";
-                e.target.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)"; // Adjusted base shadow
+                e.target.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
               }}
             >
               Explore Features
@@ -313,7 +317,7 @@ const Home = () => {
         <div className="container">
           <h2 className="text-center fw-bold mb-5" style={{
             color: "#3b2f2f",
-            fontSize: "2.5rem",
+            fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
             textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
           }}>
             Key Features
@@ -369,12 +373,12 @@ const Home = () => {
         <div className="container">
           <h2 className="text-center fw-bold mb-3" style={{
             color: "#3b2f2f",
-            fontSize: "2.5rem",
+            fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
             textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
           }}>
             Library Modules
           </h2>
-          <p className="text-center lead mb-5" style={{ fontSize: "1.2rem" }}>
+          <p className="text-center lead mb-5" style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.2rem)" }}>
             Everything your library needs, in one place.
           </p>
           
@@ -427,7 +431,7 @@ const Home = () => {
         <div className="container">
           <h2 className="text-center fw-bold mb-5" style={{
             color: "#3b2f2f",
-            fontSize: "2.5rem",
+            fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
             textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
           }}>
             Membership Plans
@@ -492,7 +496,7 @@ const Home = () => {
                       style={{
                         transition: "all 0.3s ease",
                         borderWidth: "2px",
-                        textDecoration: "none" // Remove underline from link
+                        textDecoration: "none"
                       }}
                       onMouseEnter={(e) => {
                         e.target.style.transform = "translateY(-3px)";
@@ -513,12 +517,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Support Section */}
+      {/* Support Section - Updated with text instead of button and better mobile email display */}
       <section id="support" className="py-5" style={{ position: "relative", zIndex: 2 }}>
         <div className="container">
           <h2 className="text-center fw-bold mb-5" style={{
             color: "#3b2f2f",
-            fontSize: "2.5rem",
+            fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
             textShadow: "2px 2px 4px rgba(0,0,0,0.1)"
           }}>
             Get In Touch
@@ -531,45 +535,65 @@ const Home = () => {
             maxWidth: "800px",
             border: "none"
           }}>
-            <div className="card-body text-center p-5">
-              <div className="mb-4" style={{ fontSize: "3rem", color: "#ffd166" }}>
+            <div className="card-body text-center p-4 p-md-5">
+              <div className="mb-4" style={{ fontSize: "clamp(2.5rem, 5vw, 3rem)", color: "#ffd166" }}>
                 ✉️
               </div>
-              <h3 className="fw-bold mb-4 text-white">Need Assistance?</h3>
-              <p className="lead mb-4 text-white" style={{ opacity: 0.9 }}>
+              <h3 className="fw-bold mb-4 text-white" style={{ fontSize: "clamp(1.5rem, 3vw, 1.8rem)" }}>
+                Need Assistance?
+              </h3>
+              <p className="lead mb-4 text-white" style={{ 
+                opacity: 0.9,
+                fontSize: "clamp(1rem, 2.5vw, 1.2rem)"
+              }}>
                 Our dedicated support team is here to help you with onboarding, 
                 data migration, and training sessions for your entire staff.
               </p>
-              <button className="btn btn-warning btn-lg"
-                style={{
-                  transition: "all 0.3s ease",
-                  padding: "12px 40px",
-                  borderRadius: "10px",
-                  marginBottom:"10px"
+              
+              {/* Contact Support as text instead of button */}
+              <div className="mb-4">
+                <span className="fw-semibold text-white" style={{
+                  fontSize: "1.2rem",
+                  borderBottom: "2px solid #ffc107",
+                  paddingBottom: "5px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease"
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = "translateY(-3px)";
-                  e.target.style.boxShadow = "0 10px 25px rgba(255, 193, 7, 0.4)";
+                  e.target.style.color = "#ffd166";
+                  e.target.style.borderBottomColor = "#ffd166";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = "translateY(0)";
-                  e.target.style.boxShadow = "none";
-                }}>
-                Contact Support
-              </button>
+                  e.target.style.color = "#ffffff";
+                  e.target.style.borderBottomColor = "#ffc107";
+                }}
+                onClick={() => window.location.href = "mailto:librarymanagement203@gmail.com"}>
+                  Contact Support
+                </span>
+              </div>
               
+              {/* Email with better mobile responsiveness */}
               <div className="d-flex align-items-center justify-content-center mb-4 p-3 rounded" style={{
                 background: "rgba(255, 255, 255, 0.1)",
                 maxWidth: "400px",
-                margin: "0 auto"
+                margin: "0 auto",
+                width: "100%",
+                flexWrap: "wrap",
+                textAlign: "center"
               }}>
-                <span className="me-3" style={{ fontSize: "1.5rem", color: "#ffd166" }}>📧</span>
-                <span className="fs-5 fw-semibold text-white">
+                <span className="me-3" style={{ fontSize: "1.5rem", color: "#ffd166", flexShrink: 0 }}>📧</span>
+                <span className="fs-5 fw-semibold text-white" style={{
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
+                  maxWidth: "100%"
+                }}>
                   librarymanagement203@gmail.com
                 </span>
               </div>
               
-              
+              <div className="mt-3 text-white-50" style={{ fontSize: "0.9rem" }}>
+                We typically respond within 24 hours
+              </div>
             </div>
           </div>
         </div>
@@ -584,8 +608,9 @@ const Home = () => {
         zIndex: 10
       }}>
         <div className="container">
-          <p className="mb-3" style={{
-            textShadow: "1px 1px 2px rgba(0,0,0,0.3)"
+          <p className="mb-0" style={{
+            textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)"
           }}>© 2025 MyLibrary | Designed for better learning</p>
         </div>
       </footer>
@@ -600,6 +625,12 @@ const Home = () => {
           
           section {
             scroll-margin-top: 80px;
+          }
+          
+          /* Improve text rendering for gradient text */
+          h1 {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
           }
         `}
       </style>
